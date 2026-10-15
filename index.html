@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#244fe8">
+  <meta name="description" content="Твой покер. Всегда онлайн. Современный мобильный формат и быстрый доступ к игре.">
+  <title>Твой покер. Всегда онлайн.</title>
+  <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
+  <style>
+    :root{--blue:#244fe8;--orange:#ff7138;--paper:#fff8ec;--ink:#10131c;--muted:#b7bfd5}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--blue);color:var(--paper);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+    a{color:inherit}
+    .shell{min-height:100svh;overflow:hidden;position:relative;background:radial-gradient(ellipse at 80% 12%,rgba(255,255,255,.12),transparent 30%),var(--blue)}
+    .shell:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.12;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E")}
+    .wrap{width:min(1160px,100%);margin:auto;padding:26px 6.2vw 24px;position:relative;z-index:1}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:11px;font-size:12px;font-weight:850;letter-spacing:.16em;text-transform:uppercase}
+    .mark{width:34px;height:34px;display:grid;place-items:center;border:1px solid rgba(255,248,236,.6);border-radius:50%;font-size:19px;line-height:1}
+    .region{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,248,236,.72)}
+    main{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);align-items:center;gap:clamp(20px,4vw,64px);padding:clamp(48px,8vh,94px) 0 66px}
+    .eyebrow{display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.2em;font-weight:800;text-transform:uppercase;margin-bottom:24px;color:#ffd7c7}
+    .eyebrow:before{content:"";width:28px;height:2px;background:var(--orange)}
+    h1{font-size:clamp(43px,6.3vw,86px);line-height:.94;letter-spacing:-.075em;text-transform:uppercase;margin:0;max-width:650px;font-weight:900}
+    h1 span{color:var(--orange);display:block}
+    .lead{font-size:clamp(17px,1.8vw,21px);line-height:1.45;margin:24px 0 28px;color:rgba(255,248,236,.86);max-width:390px}
+    .benefits{list-style:none;padding:0;margin:0 0 34px;display:grid;gap:14px}
+    .benefits li{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:600}
+    .tick{width:23px;height:23px;flex:0 0 23px;border:1px solid rgba(255,248,236,.4);border-radius:50%;display:grid;place-items:center;color:var(--orange);font-size:13px}
+    .cta{display:flex;align-items:center;justify-content:space-between;gap:18px;width:min(100%,370px);padding:18px 20px;background:var(--orange);border-radius:9px;text-decoration:none;color:#171722;font-size:13px;font-weight:900;letter-spacing:.09em;text-transform:uppercase;box-shadow:0 12px 34px rgba(14,21,70,.2);transition:transform .2s ease,background .2s ease}
+    .cta:hover{transform:translateY(-2px);background:#ff8655}
+    .cta:focus-visible{outline:3px solid var(--paper);outline-offset:4px}
+    .cta .arrow{font-size:23px;font-weight:500}
+    .fine{font-size:10px;line-height:1.5;color:rgba(255,248,236,.58);margin-top:16px;max-width:370px}
+    .visual{position:relative;min-width:0;isolation:isolate}
+    .visual:before{content:"";position:absolute;width:84%;aspect-ratio:1;border:1px solid rgba(255,248,236,.22);border-radius:50%;top:8%;left:8%;z-index:-1}
+    .visual:after{content:"";position:absolute;width:66%;aspect-ratio:1;border:1px solid rgba(255,248,236,.14);border-radius:50%;top:17%;left:17%;z-index:-1}
+    .art{width:100%;height:auto;display:block;filter:drop-shadow(0 32px 45px rgba(9,17,73,.28));overflow:visible}
+    .stamp{position:absolute;right:0;top:6%;width:91px;height:91px;border-radius:50%;background:var(--orange);color:#171722;display:grid;place-content:center;text-align:center;transform:rotate(10deg);box-shadow:0 12px 28px #132b9a55}
+    .stamp b{font-size:11px;line-height:1.05;letter-spacing:.07em}
+    .stamp span{font-size:8px;letter-spacing:.14em;margin-top:5px}
+    .art-caption{position:absolute;bottom:4%;left:1%;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,248,236,.6)}
+    .bottom{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-top:20px;border-top:1px solid rgba(255,248,236,.22);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,248,236,.6)}
+    .bottom .dot{display:inline-block;width:5px;height:5px;background:var(--orange);border-radius:50%;margin:0 8px 1px 0}
+    @media(min-width:1200px){.wrap{padding-left:72px;padding-right:72px}}
+    @media(max-width:720px){
+      .wrap{padding:20px 22px 18px}
+      .brand{font-size:10px;letter-spacing:.12em}.mark{width:31px;height:31px}
+      .region{font-size:9px;letter-spacing:.1em}
+      main{grid-template-columns:1fr;gap:28px;padding:54px 0 36px}
+      .copy{order:1}.visual{order:2;width:min(100%,470px);margin:0 auto}
+      .eyebrow{font-size:10px;margin-bottom:19px}
+      h1{font-size:clamp(46px,12.6vw,76px);max-width:520px}
+      .lead{font-size:17px;margin:20px 0 23px}
+      .benefits{gap:12px;margin-bottom:28px}
+      .benefits li{font-size:13px}
+      .cta{width:100%;padding:18px 19px}
+      .visual{margin-top:2px}
+      .stamp{width:75px;height:75px;right:2%;top:4%}
+      .stamp b{font-size:9px}.stamp span{font-size:7px}
+      .art-caption{font-size:8px;bottom:1%}
+      .bottom{font-size:9px;line-height:1.5;align-items:flex-start}
+    }
+    @media(max-width:360px){.wrap{padding-left:17px;padding-right:17px}h1{font-size:43px}.region{max-width:90px;text-align:right}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.cta{transition:none}}
+  </style>
+
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;
+    s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+    (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','1399310622039113');
+    fbq('track','PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1399310622039113&ev=PageView&noscript=1"></noscript>
+  <!-- End Meta Pixel -->
+</head>
+<body>
+<div class="shell">
+  <div class="wrap">
+    <header>
+      <div class="brand"><span class="mark" aria-hidden="true">♠</span><span>POKER<br>ONLINE</span></div>
+      <div class="region">Кыргызстан · Онлайн</div>
+    </header>
+
+    <main>
+      <section class="copy">
+        <div class="eyebrow">Твой следующий ход</div>
+        <h1>Твой покер.<span>Всегда онлайн.</span></h1>
+        <p class="lead">Твоя игра — твои правила.</p>
+        <ul class="benefits">
+          <li><span class="tick" aria-hidden="true">✓</span>Играй там, где удобно</li>
+          <li><span class="tick" aria-hidden="true">✓</span>Удобный мобильный формат</li>
+          <li><span class="tick" aria-hidden="true">✓</span>Быстрый доступ к игре</li>
+        </ul>
+        <a class="cta" id="main-cta" href="https://t.me/+WstRWb5Vwm9iYTAy" target="_blank" rel="noopener noreferrer">
+          <span>Играть онлайн</span><span class="arrow" aria-hidden="true">↗</span>
+        </a>
+        <p class="fine">Только для совершеннолетних. Играйте ответственно и в рамках законодательства вашей страны.</p>
+      </section>
+
+      <div class="visual" aria-label="Графическая композиция с картами и покерными фишками">
+        <svg class="art" viewBox="0 0 600 610" role="img" aria-labelledby="art-title">
+          <title id="art-title">Премиальная композиция из игральных карт и фишек</title>
+          <defs>
+            <linearGradient id="table" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#172c7f"/><stop offset=".55" stop-color="#101c50"/><stop offset="1" stop-color="#080f30"/></linearGradient>
+            <linearGradient id="card" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fffdf6"/><stop offset="1" stop-color="#e7e2d7"/></linearGradient>
+            <linearGradient id="chip" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#343b4d"/><stop offset=".5" stop-color="#151b2b"/><stop offset="1" stop-color="#42495a"/></linearGradient>
+            <filter id="shadow" x="-30%" y="-30%" width="160%" height="180%"><feGaussianBlur in="SourceAlpha" stdDeviation="12"/><feOffset dy="15"/><feComponentTransfer><feFuncA type="linear" slope=".35"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+          <ellipse cx="304" cy="370" rx="238" ry="172" fill="#101b58" opacity=".52" transform="rotate(-17 304 370)"/>
+          <g transform="translate(63 112) rotate(-13 230 210)" filter="url(#shadow)">
+            <rect x="26" y="46" width="400" height="300" rx="28" fill="#ff7138" opacity=".95"/>
+            <rect x="15" y="34" width="400" height="300" rx="28" fill="url(#table)" stroke="#6078df" stroke-width="2"/>
+            <rect x="30" y="49" width="370" height="270" rx="20" fill="none" stroke="#8495e7" stroke-opacity=".5"/>
+            <path d="M56 85H374M56 283H374" stroke="#8495e7" stroke-opacity=".18"/>
+            <circle cx="214" cy="184" r="105" fill="none" stroke="#8293e5" stroke-opacity=".12" stroke-width="1.5"/>
+            <circle cx="214" cy="184" r="83" fill="none" stroke="#8293e5" stroke-opacity=".1" stroke-width="1.5"/>
+          </g>
+          <g transform="translate(267 70) rotate(10 100 170)" filter="url(#shadow)">
+            <rect x="0" y="0" width="188" height="275" rx="14" fill="#d8d4cc"/>
+            <rect x="5" y="5" width="178" height="265" rx="11" fill="url(#card)" stroke="#fff" stroke-width="1"/>
+            <text x="22" y="48" fill="#17204c" font-size="31" font-family="Georgia,serif" font-weight="bold">A</text>
+            <text x="21" y="76" fill="#17204c" font-size="27" font-family="Georgia,serif">♠</text>
+            <text x="94" y="168" fill="#17204c" font-size="110" text-anchor="middle" font-family="Georgia,serif">♠</text>
+            <g transform="translate(163 235) rotate(180)"><text x="0" y="0" fill="#17204c" font-size="31" font-family="Georgia,serif" font-weight="bold">A</text><text x="0" y="27" fill="#17204c" font-size="27" font-family="Georgia,serif">♠</text></g>
+          </g>
+          <g transform="translate(100 355) rotate(-9)" filter="url(#shadow)">
+            <ellipse cx="92" cy="92" rx="78" ry="27" fill="#080d24" opacity=".45"/>
+            <ellipse cx="92" cy="76" rx="74" ry="25" fill="#11182a" stroke="#69748c" stroke-width="3"/>
+            <path d="M18 45v31c0 14 33 25 74 25s74-11 74-25V45" fill="url(#chip)" stroke="#69748c" stroke-width="3"/>
+            <ellipse cx="92" cy="45" rx="74" ry="25" fill="url(#chip)" stroke="#8992a5" stroke-width="3"/>
+            <ellipse cx="92" cy="45" rx="54" ry="17" fill="none" stroke="#ff7138" stroke-width="5" stroke-dasharray="9 9"/>
+            <ellipse cx="92" cy="45" rx="34" ry="10" fill="none" stroke="#b6c1dc" stroke-opacity=".7" stroke-width="1.5"/>
+          </g>
+          <g transform="translate(328 382) rotate(12)" filter="url(#shadow)">
+            <ellipse cx="80" cy="74" rx="66" ry="23" fill="#080d24" opacity=".45"/>
+            <path d="M14 36v35c0 13 29 23 66 23s66-10 66-23V36" fill="#151b2a" stroke="#747d8f" stroke-width="3"/>
+            <ellipse cx="80" cy="36" rx="66" ry="23" fill="url(#chip)" stroke="#9ca5b6" stroke-width="3"/>
+            <ellipse cx="80" cy="36" rx="48" ry="16" fill="none" stroke="#fff8ec" stroke-width="5" stroke-dasharray="7 8"/>
+            <ellipse cx="80" cy="36" rx="28" ry="9" fill="none" stroke="#aeb8d0" stroke-opacity=".8"/>
+          </g>
+          <g transform="translate(248 462) rotate(-3)" filter="url(#shadow)">
+            <ellipse cx="60" cy="53" rx="53" ry="18" fill="#080d24" opacity=".35"/>
+            <path d="M7 24v27c0 10 24 18 53 18s53-8 53-18V24" fill="#171d2c" stroke="#69748c" stroke-width="2.5"/>
+            <ellipse cx="60" cy="24" rx="53" ry="18" fill="url(#chip)" stroke="#929caf" stroke-width="2.5"/>
+            <ellipse cx="60" cy="24" rx="38" ry="12" fill="none" stroke="#ff7138" stroke-width="4" stroke-dasharray="7 7"/>
+          </g>
+          <path d="M55 520h110" stroke="#ff7138" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="45" cy="520" r="4" fill="#ff7138"/>
+          <text x="55" y="543" fill="#fff8ec" opacity=".62" font-size="10" font-family="Arial,sans-serif" letter-spacing="3">THE NEXT MOVE</text>
+        </svg>
+        <div class="stamp"><b>PLAY<br>THE<br>MOMENT</b><span>ONLINE</span></div>
+        <div class="art-caption">Precision · Focus · Your game</div>
+      </div>
+    </main>
+
+    <footer class="bottom">
+      <span><i class="dot"></i>Покер — это стратегия</span>
+      <span>18+ · Играйте ответственно</span>
+    </footer>
+  </div>
+</div>
+<script>
+  // Tracks CTA clicks as a standard Meta Pixel event.
+  document.getElementById('main-cta').addEventListener('click', function () {
+    if (typeof window.fbq === 'function') {
+      window.fbq('track', 'Lead', {content_name: 'Telegram CTA'});
+    }
+  });
+</script>
+</body>
+</html>
